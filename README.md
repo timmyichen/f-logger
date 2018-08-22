@@ -32,10 +32,16 @@ tar -xvzf mongodb-osx-ssl-x86_64-4.0.0-rc1.tgz
 Rename the folder to `mongo4.0`:
 
 ```
-mv mongodb-osx-ssl-x86_64-4.0.0-rc1 mongo4.0
+mv mongodb-osx-x86_64-4.0.0-rc1 mongo4.0
 ```
 
-Try running a server with `~/mongo-server/mongo4.0/bin/mongod --smallfiles`.  If you see something like `[initandlisten] waiting for connections on port 27017` at the end, you know it worked!
+Make a directory for the data itself:
+
+```
+mkdir ~/mongo-server/data
+```
+
+Try running a server with `~/mongo-server/mongo4.0/bin/mongod --smallfiles --dbpath ~/mongo-server/data`.  If you see something like `[initandlisten] waiting for connections on port 27017` at the end, you know it worked!  Press CTRL+C to close the server.
 
 #### Linux
 
@@ -59,7 +65,13 @@ Rename the folder to `mongo4.0`:
 mv mongodb-linux-x86_64-ubuntu1604-4.0.0-rc1 mongo4.0
 ```
 
-Try running a server with `~/mongo-server/mongo4.0/bin/mongod --smallfiles`.  If you see something like `[initandlisten] waiting for connections on port 27017` at the end, you know it worked!
+Make a directory for the data itself:
+
+```
+mkdir ~/mongo-server/data
+```
+
+Try running a server with `~/mongo-server/mongo4.0/bin/mongod --smallfiles --dbpath ~/mongo-server/data`.  If you see something like `[initandlisten] waiting for connections on port 27017` at the end, you know it worked!  Press CTRL+C to close the server.
 
 ### Development Server
 

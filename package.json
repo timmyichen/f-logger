@@ -10,7 +10,7 @@
     "build:watch": "./node_modules/.bin/webpack -d --watch",
     "build": "./node_modules/.bin/webpack -p",
     "dev-server": "npm run build:watch & npm run server:watch",
-    "db": "~/mongo-server/mongo4.0/bin/mongod --smallfiles",
+    "db": "~/mongo-server/mongo4.0/bin/mongod --smallfiles --dbpath ~/mongo-server/data/",
     "dev": "concurrently \"npm run db\" \"npm run dev-server\""
   },
   "repository": {
