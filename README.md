@@ -7,11 +7,17 @@ TODO: Describe the app
 
 ### MongoDB v4:
 
+
+Create a new directory for MongoDB in your home directory and navigate to it
+```
+mkdir ~/mongo-server
+cd ~/mongo-server
+```
+
 #### Mac
 
-Run the following in your home directory (or wherever your working directory is):
+Once in your `mongo-server` directory, run the following:
 
-(Mac)
 ```
 wget http://fastdl.mongodb.org/osx/mongodb-osx-ssl-x86_64-4.0.0-rc1.tgz
 ```
@@ -25,22 +31,15 @@ tar -xvzf mongodb-osx-ssl-x86_64-4.0.0-rc1.tgz
 
 Rename the folder to `mongo4.0`:
 
-(Mac)
 ```
 mv mongodb-osx-ssl-x86_64-4.0.0-rc1 mongo4.0
 ```
 
-Add the `mongo4.0/bin` directory to your PATH.  An example of how to do it (there are multiple ways) is by running:
-
-```
-PATH=$PATH:~/workspace/mongo4.0/bin/
-```
-
-Where `~` is the home directory, and `mongo4.0` is in a folder called `workspace` (which is in the home directory).
-
-Try running a server with `mongod --smallfiles`.  If you see something like `[initandlisten] waiting for connections on port 27017` at the end, you know it worked!
+Try running a server with `~/mongo-server/mongo4.0/bin/mongod --smallfiles`.  If you see something like `[initandlisten] waiting for connections on port 27017` at the end, you know it worked!
 
 #### Linux
+
+Once in your `mongo-server` directory, run the following:
 
 Run the following in your home directory (or wherever your working directory is):
 
@@ -60,15 +59,7 @@ Rename the folder to `mongo4.0`:
 mv mongodb-linux-x86_64-ubuntu1604-4.0.0-rc1 mongo4.0
 ```
 
-Add the `mongo4.0/bin` directory to your PATH.  An example of how to do it (there are multiple ways) is by running:
-
-```
-PATH=$PATH:~/workspace/mongo4.0/bin/
-```
-
-Where `~` is the home directory, and `mongo4.0` is in a folder called `workspace` (which is in the home directory).
-
-Try running a server with `mongod --smallfiles`.  If you see something like `[initandlisten] waiting for connections on port 27017` at the end, you know it worked!
+Try running a server with `~/mongo-server/mongo4.0/bin/mongod --smallfiles`.  If you see something like `[initandlisten] waiting for connections on port 27017` at the end, you know it worked!
 
 ### Development Server
 
