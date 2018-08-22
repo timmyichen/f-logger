@@ -9,9 +9,16 @@ TODO: Describe the app
 
 Run the following in your home directory (or wherever your working directory is):
 
+(Linux)
 ```
 wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1604-4.0.0-rc1.tgz
 ```
+
+(Mac)
+```
+wget http://fastdl.mongodb.org/osx/mongodb-osx-ssl-x86_64-4.0.0-rc1.tgz
+```
+*You may also have to install `wget` first by running `brew install wget`*
 
 Unzip the files with:
 
@@ -21,8 +28,14 @@ tar -xvzf mongodb-linux-x86_64-ubuntu1604-4.0.0-rc1.tgz
 
 Rename the folder to `mongo4.0`:
 
+(Linux)
 ```
 mv mongodb-linux-x86_64-ubuntu1604-4.0.0-rc1 mongo4.0
+```
+
+(Mac)
+```
+mv mongodb-osx-ssl-x86_64-4.0.0-rc1 mongo4.0
 ```
 
 Add the `mongo4.0/bin` directory to your PATH.  An example of how to do it (there are multiple ways) is by running:
