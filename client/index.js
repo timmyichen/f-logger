@@ -1,7 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
 
-import TestComponent from './components/TestComponent.react';
+import LoginForm from './components/auth/LoginForm.react';
+import SignupForm from './components/auth/SignupForm.react';
 
 class Index extends React.Component {
   constructor(props) {
@@ -11,8 +12,8 @@ class Index extends React.Component {
   render() {
     return (
       <div>
-        hi!
-        <TestComponent />
+        <LoginForm />
+        <SignupForm />
       </div>
     );
   }
