@@ -2,18 +2,19 @@ const express = require('express');
 const engines = require('consolidate');
 const config = require('./config');
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/flogger');
+mongoose.connect('mongodb://localhost/flogger', { useNewUrlParser: true });
 const Student = require('./models/student');
 
-// var Tim = new Student({
+// var jorge = new Student({
 //   _id: new mongoose.Types.ObjectId(),
-//   firstName: 'Tim',
-//   lastName: 'Buktu',
-//   studentId: 123
+//   firstName: 'j',
+//   lastName: 'gall',
+//   studentId: 12345,
+//   email: 'asdf@asdf.com'
 // });
 
-// Tim.save()
-//   .then(() => console.log(`${Tim.firstName} was saved to the db.`))
+// jorge.save()
+//   .then(() => console.log(`${jorge.firstName} was saved to the db.`))
 //   .catch(err => console.log(err));
 
 const app = express();
