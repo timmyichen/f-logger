@@ -3,13 +3,13 @@ const engines = require('consolidate');
 const config = require('./config');
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/flogger', { useNewUrlParser: true });
-const Student = require('./models/student');
+const Teacher = require('./models/teacher');
 
-// var jorge = new Student({
+// var jorge = new Teacher({
 //   _id: new mongoose.Types.ObjectId(),
 //   firstName: 'j',
 //   lastName: 'gall',
-//   studentId: 12345,
+//   teacherId: 12345,
 //   email: 'asdf@asdf.com'
 // });
 
