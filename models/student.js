@@ -3,7 +3,7 @@ const uniqueValidator = require('mongoose-unique-validator');
 const Schema = mongoose.Schema;
 
 //required props and prop types (a schema defines the shape of the documents within a mongodb collection)
-const studentSchema = new mongoose.Schema({
+const studentSchema = new Schema({
   _id: { type: mongoose.Schema.Types.ObjectId, required: true },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
