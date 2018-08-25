@@ -14,4 +14,4 @@ const studentSchema = new Schema({
 studentSchema.plugin(uniqueValidator);
 
 //creating a model (JavaScript object) based on the schema, which has methods to save, update, fetch data by id, etc.
-module.exports = mongoose.model('Teacher', studentSchema);
+module.exports = mongoose.model('Student', studentSchema);
