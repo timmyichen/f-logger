@@ -16,10 +16,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //API endpoint for getting a list of all teachers from the db
-app.get('/teachers', (req, res) => {
+app.get('/api/teachers', (req, res) => {
   Teacher.find({}, function(err, teachers) {
     if(err) {
-      res.send('Something went wrong finding the teachers.');
+      res.send('Something went wrong finding teachers.');
       next();
     }
     res.json(teachers);
@@ -28,7 +28,7 @@ app.get('/teachers', (req, res) => {
 });
 
 //API endpoint for creating a user
-app.post('/teacher', (req, res) => {
+app.post('/api/teacher/signup', (req, res) => {
   bcrypt.hash(req.body.password, 10, (err, hash) => {
     if(err) throw err;
     var teacher = new Teacher({
