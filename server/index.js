@@ -6,10 +6,11 @@ const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const MongoStore = require('connect-mongo')(session);
 const config = require('./config');
-const app = express();
 const authRoutes = require('./routers/auth');
 const userRoutes = require('./routers/users');
 const { mongoose } = require('./lib/db');
+
+const app = express();
 
 // uses nunjucks as a templating engine even though we aren't using them all that much.
 // sets the directories that nunjucks uses, along with the public directories.
@@ -32,7 +33,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   store: new MongoStore({ mongooseConnection: mongoose.connection })
-}))
+}));
 
 // passport handles authentication for us
 const passport = require('./middleware/passport');

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
+
 const Schema = mongoose.Schema;
 
 //required props and prop types (a schema defines the shape of the documents within a mongodb collection)

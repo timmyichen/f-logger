@@ -1,3 +1,5 @@
 import React from 'react';
 
-export default () => <div>This is a component!</div>;
+const TestComponent = () => <div>This is a component!</div>;
+
+export default TestComponent;
