@@ -1,16 +1,15 @@
-const router = require('express').Router();
+const router = require('express-router-async')();
 const User = require('../models/user');
+const go = require('../lib/asyncErrorHandling');
 
 //API endpoint for getting a list of all users from the db
-router.get('/api/users', (req, res) => {
-  Teacher.find({}, function(err, users) {
-    if(err) {
-      res.send('Something went wrong finding users.');
-      next();
-    }
-    res.json(users);
-    res.end();
-  });
+router.getAsync('/api/users', async (req, res) => {
+  const [err, users] = await go(User.find({}));
+  if (err) {
+    throw new Error(err.message);
+  }
+
+  return res.json(users);
 });
 
 module.exports = router;

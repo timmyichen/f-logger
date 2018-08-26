@@ -2,22 +2,27 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 const User = require('../models/user');
+const go = require('../lib/asyncErrorHandling');
 
 passport.use(new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password',
   },
-  function(email, password, done) {
-    User.findOne({ email }, function(err, user) {
-      if (err) return done(err);
+  async function(email, password, done) {
+    const [err, user] = await go(User.findOne({ email }));
 
-      bcrypt.compare(password, user.password, (err, isValid) => {
-        if (err || !user || !isValid) {
-          return done(null, false, { message: 'Could not be logged in.' });
-        }
-        return done(null, user);
-      });
-    });
+    if (err) { throw new Error(err.message) }
+
+    if (!user) {
+      return done(null, false, { message: 'Could not be logged in.' });
+    }
+
+    const isValid = await bcrypt.compare(password, user.password)
+    if (!isValid) {
+      return done(null, false, { message: 'Could not be logged in.' });
+    }
+    
+    return done(null, user);
   }
 ));
 
