@@ -3,7 +3,7 @@ const uniqueValidator = require('mongoose-unique-validator');
 const Schema = mongoose.Schema;
 
 //required props and prop types (a schema defines the shape of the documents within a mongodb collection)
-const teacherSchema = new Schema({ 
+const userSchema = new Schema({ 
   _id: { type: mongoose.Schema.Types.ObjectId, required: true },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
@@ -13,7 +13,7 @@ const teacherSchema = new Schema({
   isDeleted: { type: Boolean, default: false }
 });
 
-teacherSchema.plugin(uniqueValidator);
+userSchema.plugin(uniqueValidator);
 
 //creating a model (JavaScript object) based on the schema, which has methods to save, update, fetch data by id, etc.
-module.exports = mongoose.model('Teacher', teacherSchema);
+module.exports = mongoose.model('User', userSchema);
