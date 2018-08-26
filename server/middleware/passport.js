@@ -40,14 +40,13 @@ passport.serializeUser(function(user, cb) {
   cb(null, user._id);
 });
 
-passport.deserializeUser(function(id, cb) {
+passport.deserializeUser(async function(id, cb) {
   const [err, user] = await go(User.findOne({ _id: id }));
-    if (err) {
-      return cb(err);
-    }
+  if (err) {
+    return cb(err);
+  }
 
-    cb(null, user);
-  });
+  cb(null, user);
 });
 
 module.exports = passport;
