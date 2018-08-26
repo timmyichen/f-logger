@@ -11,7 +11,8 @@
     "build": "./node_modules/.bin/webpack -p",
     "dev-server": "npm run build:watch & npm run server:watch",
     "db": "~/mongo-server/mongo4.0/bin/mongod --smallfiles --dbpath ~/mongo-server/data/",
-    "dev": "concurrently \"npm run db\" \"npm run dev-server\""
+    "dev": "concurrently \"npm run db\" \"npm run dev-server\"",
+    "lint": "./node_modules/.bin/eslint server/ client/"
   },
   "repository": {
     "type": "git",
@@ -46,11 +47,17 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.6",
     "babel-loader": "^7.1.5",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "concurrently": "^3.6.1",
+    "eslint": "^5.4.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.1",
     "nodemon": "^1.18.3",
     "webpack": "^3.3.0"
   }

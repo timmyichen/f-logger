@@ -47,11 +47,11 @@ router.postAsync('/api/user/signup', async (req, res) => {
 
 // TODO - remove these, used for testing auth
 router.get('/login-fail', (req, res) => {
-  res.send('no login :(')
-})
+  res.send('no login :(');
+});
 
 router.get('/login-success', (req, res) => {
   res.send('yay login');
-})
+});
 
 module.exports = router;

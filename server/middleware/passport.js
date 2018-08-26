@@ -16,7 +16,7 @@ passport.use(new LocalStrategy({
     const [err, user] = await go(User.findOne({ email }));
 
     if (err) {
-      throw new Error(err.message)
+      throw new Error(err.message);
     }
 
     if (!user) {
@@ -25,7 +25,7 @@ passport.use(new LocalStrategy({
 
     // we only compare the hashes of the password, not the passwords themselves
     // we use the bcrypt package which is built into nodejs to do this
-    const isValid = await bcrypt.compare(password, user.password)
+    const isValid = await bcrypt.compare(password, user.password);
     if (!isValid) {
       return done(null, false, { message: 'Could not be logged in.' });
     }
