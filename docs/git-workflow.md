@@ -15,8 +15,8 @@ Github is a place to store all the git information online, so we can sync up and
 * `repo` - short for repository.  The local repository is the one on your computer.  The remote one is the one stored on Github.
 * `commit` - (verb) to save your changes to a branch
 * `commit` - (noun) your changes made to a branch (you can have multiple commits on a branch)
-* `merge` - (verb) to combine code together
-* `pull request` - or just PR - a request to combine a specific branc with another one
+* `merge` - to combine code together
+* `pull request` - or just PR - a request to combine a specific branch with another one
 
 ## Making changes using git
 
@@ -26,7 +26,7 @@ So you want to make some changes to the codebase, huh?  Awesome!  Before you mak
 * `git reset --hard origin/master` - reset everything on the current branch to be the latest on origin (master branch)
 * `git checkout -b initials-branchname` - create a new branch and switch to it (use your initials so we know whose it is)
 * `git checkout branchname` - switch to an existing branch
-* `git add each-file-listed` - adds files to staging (to be committed) - for example, `git add server/ package.json` will add every from the `server/` adds all the changes made in every file in `server/`, and all changes made to `package.json` specifically.
+* `git add each-file-listed` - adds files to staging (to be committed) - for example, `git add package.json server/` will add all of changes made to `package.json` as well as all of the changes made to every file in `server/`.
 * `git status` - see which branch you're currently on and see which files are about to be committed
 * `git commit -m "message describing changes"` - commit the staged files to the branch, add a message describing what the changes were
 * `git push origin initials-branchname` - push committed changes on your current branch to the remote repository (on the same branch)
@@ -39,7 +39,7 @@ My usual workflow looks something like:
 4. I make some changes
 5. `git add files-changed.js`
 6. `git commit -m "added a feature"`
-7. Repeat steps 4-6 as necessary.  Once ready..
+7. Repeat steps 4-6 as necessary.  Once I'm ready..
 8. `git push origin tc-new-feature`
 9. Go to the [remote repo](https://github.com/timmyichen/f-logger/pulls) and create a new pull request (if you pushed recently, it'll prompt you to use that one)
 10. Write a description describing what the PR does
