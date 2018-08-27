@@ -92,3 +92,5 @@ npm install
 Run both your local mongoDB server and the dev server with `npm run dev`
 
 Run the dev server by itself with `npm run dev-server`.
+
+## Want to contribute?  Look at the docs for more guides.
