@@ -5,13 +5,13 @@
   "main": "server/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server:watch": "nodemon server/index.js",
+    "server:watch": "nodemon --watch server/ server/index.js",
     "server": "node app.js",
     "build:watch": "./node_modules/.bin/webpack -d --watch",
     "build": "./node_modules/.bin/webpack -p",
     "dev-server": "npm run build:watch & npm run server:watch",
     "db": "~/mongo-server/mongo4.0/bin/mongod --smallfiles --dbpath ~/mongo-server/data/",
-    "dev": "concurrently \"npm run db\" \"npm run dev-server\"",
+    "dev": "concurrently --names \"MONGO,SERVER\" -c \"bgGreen.bold,bgMagenta.bold\" \"npm run db\" \"npm run dev-server\"",
     "lint": "./node_modules/.bin/eslint server/ client/"
   },
   "repository": {
