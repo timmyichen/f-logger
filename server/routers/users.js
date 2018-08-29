@@ -13,4 +13,9 @@ router.getAsync('/api/users', async (req, res) => {
   return res.json(users);
 });
 
+// this gets the current user information
+router.get('/api/current_user', (req, res) => {
+  return res.json(req.user);
+});
+
 module.exports = router;
