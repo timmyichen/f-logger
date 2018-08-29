@@ -1,22 +1,14 @@
 import React from 'react';
 
-class SignupForm extends React.Component {
+class Login extends React.Component {
   onSubmit = e => {
     e.preventDefault();
   }
 
   render() {
     return (
-      <div className="signup-form-container">
-        <form className="ui form signup-form">
-          <div className="field">
-            <label>First Name</label>
-            <input placeholder="First Name" />
-          </div>
-          <div className="field">
-            <label>Last Name</label>
-            <input placeholder="Last Name" />
-          </div>
+      <div className="login-form-container">
+        <form className="ui form login-form">
           <div className="field">
             <label>Email</label>
             <input placeholder="Email" />
@@ -30,14 +22,15 @@ class SignupForm extends React.Component {
           </button>
         </form>
         <style jsx>{`
-          .signup-form-container {
+          .login-form-container {
             display: flex;
             justify-content: center;
+            margin-bottom: 50px;
           }
-          .signup-form {
+          .login-form-container .login-form {
             padding: 30px;
             width: 300px;
-            height: 400px;
+            height: 250px;
             border: 1px solid black;
             border-radius: 5px;
           }
@@ -47,4 +40,4 @@ class SignupForm extends React.Component {
   }
 }
 
-export default SignupForm;
+export default Login;

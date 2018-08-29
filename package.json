@@ -5,13 +5,14 @@
   "main": "server/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server:watch": "nodemon server/index.js",
+    "server:watch": "nodemon --watch server/ server/index.js",
     "server": "node app.js",
     "build:watch": "./node_modules/.bin/webpack -d --watch",
     "build": "./node_modules/.bin/webpack -p",
-    "dev-server": "npm run build:watch & npm run server:watch",
+    "dev-server": "npm run server:watch",
+    "dev-client": "npm run build:watch",
     "db": "~/mongo-server/mongo4.0/bin/mongod --smallfiles --dbpath ~/mongo-server/data/",
-    "dev": "concurrently \"npm run db\" \"npm run dev-server\"",
+    "dev": "concurrently --names \"MONGO,SERVER,CLIENT\" -c \"bgGreen.bold,bgMagenta.bold,bgYellow.bold\" \"npm run db\" \"npm run dev-server\" \"npm run dev-client\"",
     "lint": "./node_modules/.bin/eslint server/ client/"
   },
   "repository": {
@@ -59,6 +60,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.1",
     "nodemon": "^1.18.3",
-    "webpack": "^3.3.0"
+    "webpack": "^4.17.1",
+    "webpack-cli": "^3.1.0"
   }
 }
