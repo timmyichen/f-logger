@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/timmyichen/f-logger#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "bcrypt": "^3.0.0",
     "body-parser": "^1.18.3",
     "connect-mongo": "^2.0.1",
@@ -56,6 +57,7 @@
     "concurrently": "^3.6.1",
     "eslint": "^5.4.0",
     "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-babel": "^5.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.1",

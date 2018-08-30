@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 // when importing from packages, you just import __ from 'package-name'
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // when importing from local code, you need to start with ./
 // you do not need to include the .js that the file ends with
