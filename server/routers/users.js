@@ -15,7 +15,14 @@ router.getAsync('/api/users', async (req, res) => {
 
 // this gets the current user information
 router.get('/api/current_user', (req, res) => {
-  return res.json(req.user);
+  if (!req.user) {
+    return res.json();
+  }
+
+  const userWithoutPassword = req.user._doc;
+  // don't send the password hash to user though
+  delete userWithoutPassword.password;
+  return res.json(userWithoutPassword);
 });
 
 module.exports = router;
