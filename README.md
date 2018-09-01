@@ -82,7 +82,7 @@ git clone https://github.com/timmyichen/f-logger
 ```
 *This copies all the files + all the git information from the linked repository, including all the commit histories and stuff.*
 
-Install the node packages:
+Install the node packages (make sure you're running the latest version of node.js):
 
 ```
 npm install
