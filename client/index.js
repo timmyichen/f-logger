@@ -9,6 +9,7 @@ import Header from './components/layout/Header.react';
 import Landing from './components/Landing.react';
 import Login from './components/Login.react';
 import Signup from './components/Signup.react';
+import Dashboard from './components/Dashboard.react';
 
 class Index extends React.Component {
   constructor(props) {
@@ -20,11 +21,12 @@ class Index extends React.Component {
       <Router>
         <div>
           <Header />
-          
+
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
+            <Route path="/dashboard" component={Dashboard} />
           </Switch>
         </div>
       </Router>
