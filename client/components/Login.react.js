@@ -56,7 +56,7 @@ class Login extends React.Component {
               placeholder="Email"
               value={email}
               onChange={e => this.onChangeField('email', e.target.value)}
-              />
+            />
           </div>
           <div className="field">
             <label>Password</label>
@@ -65,7 +65,7 @@ class Login extends React.Component {
               type="password"
               value={password}
               onChange={e => this.onChangeField('password', e.target.value)}
-              />
+            />
           </div>
           <button className="ui button" type="submit" onClick={this.onSubmit}>
             Log In
