@@ -61,7 +61,7 @@ class Signup extends React.Component {
 
     // Once it comes back, we check to see if it was successful, then we alert a yay message
     if (res.data.success) {
-      alert('signed up yay!');
+      alert('signed up yay');
     }
   }
 
