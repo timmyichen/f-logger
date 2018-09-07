@@ -31,10 +31,9 @@ class Login extends React.Component {
   
     if(res.status == 200){
       alert('yay you logged in.');
-      
     }
-      else {
-        alert('invalid login. try again.');
+    else {
+      alert('invalid login. try again.');
     }
   }
   
