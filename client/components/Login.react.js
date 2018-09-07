@@ -1,11 +1,47 @@
 import React from 'react';
+import axios from 'axios';
+import validations from '../utils/validation';
 
 class Login extends React.Component {
-  onSubmit = e => {
-    e.preventDefault();
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+     password: '',
+    };
   }
-
+    
+onSubmit = async e => {
+    e.preventDefault();
+    const { email, password } = this.state
+    const validationChecks = {
+    email: validations.isEmail(email),
+    password: validations.isAtLeastLength(password, 8),
+    };
+  
+  for (const field of Object.keys(validationChecks)) {
+      if (!validationChecks[field].valid) {
+        alert(`${field} ${validationChecks[field].errorMsg}!`);
+        return;
+      }
+  }
+  
+  const res = await axios.post('/api/user/login', this.state);
+  
+  if (!res.data.success) {
+      alert('Invalid login');
+  }
+}
+  
+  onChangeField = (field, value) => {
+    this.setState({
+      [field]: value,
+    });
+  }
+      
   render() {
+    const { email, password } = this.state;
+    
     return (
       <div className="login-form-container">
         <form className="ui form login-form">
