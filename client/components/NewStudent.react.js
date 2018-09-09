@@ -17,8 +17,9 @@ class NewStudent extends React.Component {
 
   onSubmit = async () => {
     const { firstName, lastName, studentId } = this.state;
+    const { addNewStudent } = this.props;
 
-    const success = await this.props.addNewStudent({
+    const success = await addNewStudent({
       firstName,
       lastName,
       studentId,

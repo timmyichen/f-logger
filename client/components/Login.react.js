@@ -14,6 +14,7 @@ class Login extends React.Component {
   onSubmit = async e => {
     e.preventDefault();
     const { email, password } = this.state;
+    const { getUserInfo } = this.props;
 
     const validationChecks = {
       email: validations.isEmail(email),
@@ -30,7 +31,7 @@ class Login extends React.Component {
     const res = await axios.post('/api/user/login', this.state);
 
     if (res.status == 200) {
-      this.props.getUserInfo();
+      getUserInfo();
     } else {
       alert('invalid login. try again.');
     }

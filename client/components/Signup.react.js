@@ -34,6 +34,8 @@ class Signup extends React.Component {
     // This is so that we don't have to repeatedly use `this.state.whatever`.
     const { firstName, lastName, email, password } = this.state;
 
+    const { getUserInfo } = this.props;
+
     // Run each field through specific validations from our utils/validations.js library
     // e.g. firstName and lastName should not be empty, email should actually be an email,
     // and password should be at least 8 characters
@@ -61,7 +63,7 @@ class Signup extends React.Component {
 
     // Once it comes back, we check to see if it was successful, then we alert a yay message
     if (res.status == 200) {
-      this.props.getUserInfo();
+      getUserInfo();
     } else {
       alert('failed to sign up. try again.');
     }

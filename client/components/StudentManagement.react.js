@@ -26,9 +26,9 @@ class StudentManagement extends React.Component {
     });
 
     if (res.data.success) {
-      this.setState({
-        students: [...this.state.students, res.data.data],
-      });
+      this.setState(prevState => ({
+        students: [...prevState.students, res.data.data],
+      }));
     } else {
       alert('failed to create student');
     }
