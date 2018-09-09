@@ -8,6 +8,7 @@ const MongoStore = require('connect-mongo')(session);
 const config = require('./config');
 const authRoutes = require('./routers/auth');
 const userRoutes = require('./routers/users');
+const studentRoutes = require('./routers/students');
 const { mongoose } = require('./lib/db');
 
 const app = express();
@@ -44,6 +45,7 @@ app.use(passport.session());
 // the actual routes on the server
 app.use(authRoutes);
 app.use(userRoutes);
+app.use(studentRoutes);
 
 // anything else, and we send the react page (front end is handled by react router)
 app.get('*', (req, res) => {
