@@ -53,10 +53,10 @@ class StudentManagement extends React.Component {
             </tr>
           </thead>
           <tbody>
+            <NewStudent addNewStudent={this.addNewStudent} />
             {students.map(student => (
               <Student key={`manageStudent${student.studentId}`} {...student} />
             ))}
-            <NewStudent addNewStudent={this.addNewStudent} />
           </tbody>
         </table>
         <style jsx>{`

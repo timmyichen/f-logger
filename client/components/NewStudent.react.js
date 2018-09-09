@@ -31,6 +31,13 @@ class NewStudent extends React.Component {
         lastName: '',
         studentId: '',
       });
+      this.firstNameInput.focus();
+    }
+  };
+
+  handleKeyPress = e => {
+    if (e.key === 'Enter') {
+      this.onSubmit();
     }
   };
 
@@ -38,10 +45,11 @@ class NewStudent extends React.Component {
     const { firstName, lastName, studentId } = this.state;
 
     return (
-      <tr>
+      <tr onKeyPress={this.handleKeyPress}>
         <td>
           <div className="ui input">
             <input
+              ref={element => (this.firstNameInput = element)}
               name="firstName"
               type="text"
               placeholder="First Name"
@@ -73,7 +81,11 @@ class NewStudent extends React.Component {
           </div>
         </td>
         <td colSpan="2">
-          <button className="ui primary button" onClick={this.onSubmit}>
+          <button
+            type="submit"
+            className="ui primary button"
+            onClick={this.onSubmit}
+          >
             Add
           </button>
         </td>
