@@ -9,8 +9,10 @@ const studentSchema = new Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   studentId: { type: Number, required: true, unique: true },
+  owner: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User' },
   logs: [
     {
+      classId: mongoose.Schema.Types.ObjectId,
       timeOut: Date,
       timeIn: Date,
     },
