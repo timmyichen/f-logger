@@ -34,6 +34,8 @@ class Signup extends React.Component {
     // This is so that we don't have to repeatedly use `this.state.whatever`.
     const { firstName, lastName, email, password } = this.state;
 
+    const { getUserInfo } = this.props;
+
     // Run each field through specific validations from our utils/validations.js library
     // e.g. firstName and lastName should not be empty, email should actually be an email,
     // and password should be at least 8 characters
@@ -60,10 +62,12 @@ class Signup extends React.Component {
     const res = await axios.post('/api/user/signup', this.state);
 
     // Once it comes back, we check to see if it was successful, then we alert a yay message
-    if (res.data.success) {
-      alert('signed up yay');
+    if (res.status == 200) {
+      getUserInfo();
+    } else {
+      alert('failed to sign up. try again.');
     }
-  }
+  };
 
   // Instead of having a separate function for setting each individual field, we use a generic
   // `onChangeField` where we define what field to set and what value to set it to
@@ -75,7 +79,7 @@ class Signup extends React.Component {
     this.setState({
       [name]: value,
     });
-  }
+  };
 
   // Anytime this component's state changes, it will re-render the component.  The magic of react!
   render() {

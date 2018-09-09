@@ -7,53 +7,53 @@ class Login extends React.Component {
     super(props);
     this.state = {
       email: '',
-     password: '',
+      password: '',
     };
   }
-    
+
   onSubmit = async e => {
     e.preventDefault();
     const { email, password } = this.state;
-    
+    const { getUserInfo } = this.props;
+
     const validationChecks = {
       email: validations.isEmail(email),
       password: validations.isAtLeastLength(password, 8),
     };
-  
+
     for (const field of Object.keys(validationChecks)) {
       if (!validationChecks[field].valid) {
         alert(`${field} ${validationChecks[field].errorMsg}!`);
         return;
       }
     }
-  
+
     const res = await axios.post('/api/user/login', this.state);
-  
-    if(res.status == 200){
-      alert('yay you logged in.');
-    }
-    else {
+
+    if (res.status == 200) {
+      getUserInfo();
+    } else {
       alert('invalid login. try again.');
     }
-  }
-  
+  };
+
   onChangeField = event => {
     const { name, value } = event.target;
 
     this.setState({
       [name]: value,
     });
-  }
-      
+  };
+
   render() {
     const { email, password } = this.state;
-    
+
     return (
       <div className="login-form-container">
         <form className="ui form login-form">
           <div className="field">
             <label>Email</label>
-            <input 
+            <input
               name="email"
               placeholder="Email"
               value={email}
@@ -64,7 +64,7 @@ class Login extends React.Component {
             <label>Password</label>
             <input
               name="password"
-              placeholder="Password" 
+              placeholder="Password"
               type="password"
               value={password}
               onChange={this.onChangeField}
