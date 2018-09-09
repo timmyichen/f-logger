@@ -37,9 +37,11 @@ class Login extends React.Component {
     }
   }
   
-  onChangeField = (field, value) => {
+  onChangeField = event => {
+    const { name, value } = event.target;
+
     this.setState({
-      [field]: value,
+      [name]: value,
     });
   }
       
@@ -52,18 +54,20 @@ class Login extends React.Component {
           <div className="field">
             <label>Email</label>
             <input 
+              name="email"
               placeholder="Email"
               value={email}
-              onChange={e => this.onChangeField('email', e.target.value)}
+              onChange={this.onChangeField}
             />
           </div>
           <div className="field">
             <label>Password</label>
-            <input 
+            <input
+              name="password"
               placeholder="Password" 
               type="password"
               value={password}
-              onChange={e => this.onChangeField('password', e.target.value)}
+              onChange={this.onChangeField}
             />
           </div>
           <button className="ui button" type="submit" onClick={this.onSubmit}>
