@@ -1,7 +1,8 @@
 {
   "extends": "airbnb",
   "rules": {
-    "semi" : ["off", "always"]
+    "semi" : ["off", "always"],
+    "comma-dangle": ["error", "always"]
   },
   "parser": "babel-eslint",
   "rules": {
