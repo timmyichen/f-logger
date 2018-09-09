@@ -3,21 +3,10 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 class Landing extends React.Component {
-  state = {};
-
-  componentDidMount() {
-    this.getUserInfo();
-  }
-
-  getUserInfo = async () => {
-    const res = await axios.get('/api/current_user');
-    this.setState({ user: res.data });
-  }
-
-  render() { 
+  render() {
     let loginStatus = 'You are not currently logged in';
 
-    const { user } = this.state;
+    const { user } = this.props;
 
     if (user) {
       const { firstName, lastName, email } = user;
@@ -28,7 +17,9 @@ class Landing extends React.Component {
       <div>
         <h1>Welcome to the Friendly Student Logger App! :B</h1>
         <p>{loginStatus}</p>
-        <Link to="/logout"><button className="ui button">log out</button></Link>
+        <Link to="/logout">
+          <button className="ui button">log out</button>
+        </Link>
       </div>
     );
   }

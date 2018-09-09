@@ -61,7 +61,7 @@ class Signup extends React.Component {
 
     // Once it comes back, we check to see if it was successful, then we alert a yay message
     if (res.status == 200) {
-      alert('yay you signed up.');
+      this.props.getUserInfo();
     } else {
       alert('failed to sign up. try again.');
     }
