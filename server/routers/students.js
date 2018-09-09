@@ -19,8 +19,6 @@ router.getAsync('/api/students', async (req, res) => {
 router.postAsync('/api/students/create', async (req, res) => {
   const { firstName, lastName, studentId } = req.body;
 
-  console.log(req.user);
-
   const studentModel = new Student({
     _id: new mongoose.Types.ObjectId(),
     firstName,
@@ -28,6 +26,7 @@ router.postAsync('/api/students/create', async (req, res) => {
     studentId,
     owner: req.user._id,
   });
+
   const [err, student] = await go(studentModel.save());
 
   if (err) {
