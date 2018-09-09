@@ -9,12 +9,14 @@ const studentSchema = new Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
   studentId: { type: Number, required: true, unique: true },
-  logs: [{
-    timeOut: Date,
-    timeIn: Date
-  }],
+  logs: [
+    {
+      timeOut: Date,
+      timeIn: Date,
+    },
+  ],
   timeCreated: { type: Date, required: true, default: Date.now },
-  timeDeleted: { type: Date }
+  timeDeleted: { type: Date },
 });
 
 studentSchema.plugin(uniqueValidator);
