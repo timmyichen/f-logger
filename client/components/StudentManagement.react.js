@@ -1,63 +1,70 @@
 import React from 'react';
-import Student from './Student.react';
+import axios from 'axios';
 
-const dummyStudents = [
-  {
-    _id: '5b95866d4bb5f68329cb9fd1',
-    firstName: 'student',
-    lastName: 'one',
-    studentId: 1,
-    owner: '5b95786b51fc6c7dafe8441a',
-    logs: [],
-    timeCreated: '2018-09-09T20:45:33.980Z',
-    __v: 0,
-  },
-  {
-    _id: '5b9586754bb5f68329cb9fd2',
-    firstName: 'student',
-    lastName: 'two',
-    studentId: 2,
-    owner: '5b95786b51fc6c7dafe8441a',
-    logs: [],
-    timeCreated: '2018-09-09T20:45:41.138Z',
-    __v: 0,
-  },
-  {
-    _id: '5b95867b4bb5f68329cb9fd3',
-    firstName: 'student',
-    lastName: 'three',
-    studentId: 3,
-    owner: '5b95786b51fc6c7dafe8441a',
-    logs: [],
-    timeCreated: '2018-09-09T20:45:47.800Z',
-    __v: 0,
-  },
-];
+import Student from './Student.react';
+import NewStudent from './NewStudent.react';
 
 class StudentManagement extends React.Component {
-  state = { students: dummyStudents };
+  state = { students: [] };
+
+  componentDidMount() {
+    this.getStudents();
+  }
+
+  getStudents = async () => {
+    const res = await axios.get('/api/students');
+    this.setState({ students: res.data.data });
+  };
+
+  addNewStudent = async newStudentInfo => {
+    const { firstName, lastName, studentId } = newStudentInfo;
+
+    const res = await axios.post('/api/students/create', {
+      firstName,
+      lastName,
+      studentId,
+    });
+
+    if (res.data.success) {
+      this.setState({
+        students: [...this.state.students, res.data.data],
+      });
+    } else {
+      alert('failed to create student');
+    }
+
+    return res.data.success;
+  };
 
   render() {
     const { students } = this.state;
 
     return (
       <div>
-        <table class="ui celled table">
+        <div />
+        <table id="student-management-table" className="ui celled table">
           <thead>
             <tr>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>ID</th>
-              <th>Edit</th>
-              <th>Delete</th>
+              <th className="five wide">First Name</th>
+              <th className="five wide">Last Name</th>
+              <th className="four wide">ID</th>
+              <th className="one wide">Edit</th>
+              <th className="one wide">Delete</th>
             </tr>
           </thead>
           <tbody>
             {students.map(student => (
-              <Student {...student} />
+              <Student key={`manageStudent${student.studentId}`} {...student} />
             ))}
+            <NewStudent addNewStudent={this.addNewStudent} />
           </tbody>
         </table>
+        <style jsx>{`
+          #student-management-table {
+            margin: 20px auto;
+            width: 90%;
+          }
+        `}</style>
       </div>
     );
   }

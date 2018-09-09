@@ -10,7 +10,10 @@ router.getAsync('/api/students', async (req, res) => {
     throw new Error(err.message);
   }
 
-  return res.json(students);
+  return res.json({
+    data: students,
+    success: true,
+  });
 });
 
 router.postAsync('/api/students/create', async (req, res) => {
