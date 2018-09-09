@@ -16,7 +16,7 @@ import AuthedHeader from './components/layout/AuthedHeader.react';
 import Landing from './components/Landing.react';
 import Login from './components/Login.react';
 import Signup from './components/Signup.react';
-import Dashboard from './components/Dashboard.react';
+import StudentManagement from './components/StudentManagement.react';
 
 class Index extends React.Component {
   constructor(props) {
@@ -48,8 +48,8 @@ class Index extends React.Component {
               render={props => <Landing {...props} user={user} />}
             />
             <Route
-              path="/dashboard"
-              render={props => <Dashboard {...props} user={user} />}
+              path="/manage-students"
+              render={props => <StudentManagement {...props} user={user} />}
             />
             {!user ? (
               <Switch>
@@ -67,7 +67,7 @@ class Index extends React.Component {
                 />
               </Switch>
             ) : (
-              <Redirect to="/dashboard" />
+              <Redirect to="/manage-students" />
             )}
           </Switch>
         </div>

@@ -17,9 +17,6 @@ class Landing extends React.Component {
       <div>
         <h1>Welcome to the Friendly Student Logger App! :B</h1>
         <p>{loginStatus}</p>
-        <Link to="/logout">
-          <button className="ui button">log out</button>
-        </Link>
       </div>
     );
   }
