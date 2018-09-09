@@ -67,10 +67,13 @@ class Signup extends React.Component {
 
   // Instead of having a separate function for setting each individual field, we use a generic
   // `onChangeField` where we define what field to set and what value to set it to
-  onChangeField = (field, value) => {
-    // We put `[field]` in brackets so it uses the value of `field`, rather than 'field' itself.
+  onChangeField = event => {
+    // We grab the name of the element (see below where `name="firstName"`) and the value (of the inuput)
+    // from the target of the event that is passed from `onChange`
+    const { name, value } = event.target;
+    // We put `[name]` in brackets so it uses the value of `field`, rather than 'field' itself.
     this.setState({
-      [field]: value,
+      [name]: value,
     });
   }
 
@@ -84,33 +87,37 @@ class Signup extends React.Component {
           <div className="field">
             <label>First Name</label>
             <input
+              name="firstName"
               placeholder="First Name"
               value={firstName}
-              onChange={e => this.onChangeField('firstName', e.target.value)}
+              onChange={this.onChangeField}
             />
           </div>
           <div className="field">
             <label>Last Name</label>
             <input
+              name="lastName"
               placeholder="Last Name"
               value={lastName}
-              onChange={e => this.onChangeField('lastName', e.target.value)}
+              onChange={this.onChangeField}
             />
           </div>
           <div className="field">
             <label>Email</label>
             <input
+              name="email"
               placeholder="Email"
               value={email}
-              onChange={e => this.onChangeField('email', e.target.value)}
+              onChange={this.onChangeField}
             />
           </div>
           <div className="field">
             <label>Password</label>
             <input
+              name="password"
               placeholder="Password"
               value={password}
-              onChange={e => this.onChangeField('password', e.target.value)}
+              onChange={this.onChangeField}
               type="password"
             />
           </div>
