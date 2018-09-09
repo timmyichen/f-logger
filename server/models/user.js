@@ -12,7 +12,7 @@ const userSchema = new Schema({
   email: { type: String, lowercase: true, unique: true, required: true },
   password: { type: String, required: true },
   isDeleted: { type: Boolean, default: false }
-});
+}); 
 
 userSchema.plugin(uniqueValidator);
 
