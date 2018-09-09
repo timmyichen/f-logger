@@ -13,11 +13,18 @@
     "dev-client": "npm run build:watch",
     "db": "~/mongo-server/mongo4.0/bin/mongod --smallfiles --dbpath ~/mongo-server/data/",
     "dev": "concurrently --names \"MONGO,SERVER,CLIENT\" -c \"bgGreen.bold,bgMagenta.bold,bgYellow.bold\" \"npm run db\" \"npm run dev-server\" \"npm run dev-client\"",
-    "lint": "./node_modules/.bin/eslint server/ client/"
+    "lint": "./node_modules/.bin/eslint server/ client/",
+    "precommit": "lint-staged"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/timmyichen/f-logger.git"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --single-quote --trailing-comma all --write",
+      "git add"
+    ]
   },
   "author": "",
   "license": "GPL-3.0",
@@ -61,6 +68,7 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.1",
+    "lint-staged": "^7.2.2",
     "nodemon": "^1.18.3",
     "webpack": "^4.17.1",
     "webpack-cli": "^3.1.0"
