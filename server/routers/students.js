@@ -39,4 +39,16 @@ router.postAsync('/api/students/create', async (req, res) => {
   });
 });
 
+router.deleteAsync('/api/students/delete/:id', async (req, res) => {
+  const [err, students] = await go(Student.find({}));
+
+  Student.findOneAndDelete({studentId: req.params.id}, (err, student) => {
+    if (err) return res.status(500).send(err);
+    return res.status(200).json({
+      message: `${student} successfully deleted.`,
+      success: true
+    });
+  });
+});
+
 module.exports = router;

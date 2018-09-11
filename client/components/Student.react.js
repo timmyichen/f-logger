@@ -1,6 +1,7 @@
 import React from 'react';
 
 class Student extends React.Component {
+
   render() {
     const { firstName, lastName, studentId } = this.props;
 
@@ -15,7 +16,7 @@ class Student extends React.Component {
           </button>
         </td>
         <td>
-          <button className="ui red icon button">
+          <button className="ui red icon button" onClick={this.props.handleDelete.bind(this, studentId)}>
             <i className="trash icon" />
           </button>
         </td>
