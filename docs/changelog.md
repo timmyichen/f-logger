@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/). This project uses its own versioning system. Yes, I understand that a changelog makes no sense for an app that hasn’t yet been released.
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/). This project uses its own versioning system. This document is maintained by Lisa and is intended to be a layman's description of our progress.
 
 ## [Unreleased]
 ### Added
@@ -21,8 +21,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [0.0.4] - 2018-08-27
 ### Added
-- git workflow document
-- directory help document
+- git workflow document and directory help document to the docs folder
 
 ### Changed
 - added files to gitignore
@@ -34,28 +33,28 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - morgan middleware to log HTTP requests and return server response time
 - express-router-async to support asynchronous routing
 - routing for login, signup, and logout
-- index file for account models
+- index file to consolidate account models
 - eslint to catch errors in coding
-- sessions
+- support for sessions
 
 ### Changed
 - configured passport to authenticate users
 - all login, signup, and logout functions and routers are now asynchronous
-- converted all teachers to users
+- changed all "teachers" to "users"
 
 ## [0.0.2] - 2018-08-24
 ### Added
 - bcrypt to handle password encryption
-- backend route to create a new user (user creation endpoint)
+- a backend route to create a new user (user creation endpoint)
 - Mongoose for database validation
 - Semantic UI for CSS styling
 
 ### Changed
-- configured babel for JSX
-- standardized API routes
+- configured babel to compile JSX code
+- standardized API routes (all routes go through /api/ now)
 
 ## [0.0.1] - 2018-08-22
 ### Added
-- folder system for MongoDB, NodeJS, and React stack
+- folder systems for the MongoDB, NodeJS, and React stack
 - README with instructions on setting up your workspace for Mac and Linux
 
