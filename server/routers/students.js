@@ -4,7 +4,8 @@ const go = require('../lib/asyncErrorHandling');
 const { mongoose } = require('../lib/db');
 
 router.getAsync('/api/students', async (req, res) => {
-  const [err, students] = await go(Student.find({}));
+  //find students without an value for timeDeleted
+  const [err, students] = await go(Student.find({timeDeleted:{$eq:null}}));
 
   if (err) {
     throw new Error(err.message);
@@ -26,7 +27,7 @@ router.postAsync('/api/students/create', async (req, res) => {
     studentId,
     owner: req.user._id,
   });
-
+  
   const [err, student] = await go(studentModel.save());
 
   if (err) {
@@ -42,7 +43,7 @@ router.postAsync('/api/students/create', async (req, res) => {
 router.deleteAsync('/api/students/delete/:id', async (req, res) => {
   const [err, students] = await go(Student.find({}));
 
-  Student.findOneAndDelete({studentId: req.params.id}, (err, student) => {
+  Student.findOneAndUpdate({studentId: req.params.id}, {$set:{timeDeleted: Date.now()}}, async (err, student) => {
     if (err) return res.status(500).send(err);
     return res.status(200).json({
       message: `${student} successfully deleted.`,

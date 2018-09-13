@@ -68,7 +68,8 @@ class StudentManagement extends React.Component {
             {students.map(student => (
               <Student
                 handleDelete={this.handleDelete}
-                key={`manageStudent${student.studentId}`} {...student}
+                key={`manageStudent${student.studentId}`}
+                {...student}
               />
               ))
             }
