@@ -87,6 +87,7 @@ Navigate to your f-logger folder:
 ```
 cd f-logger
 ```
+
 Install the node packages (make sure you're running the latest version of node.js):
 
 ```
