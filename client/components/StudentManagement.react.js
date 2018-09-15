@@ -41,8 +41,9 @@ class StudentManagement extends React.Component {
       studentId: studentIdToDelete
     });
     if(res.data.success) {
-      const students = this.state.students.filter(student => student.studentId !== studentIdToDelete);
-      this.setState({ students });
+      // const students = this.state.students.filter(student => student.studentId !== studentIdToDelete);
+      // this.setState({ students });
+      this.setState(prevState => ({students: prevState.students.filter(student => student.studentId !== studentIdToDelete)}));
     } else {
       alert('Error deleting student.');
     }
