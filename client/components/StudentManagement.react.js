@@ -36,6 +36,19 @@ class StudentManagement extends React.Component {
     return res.data.success;
   };
 
+  handleDelete = async studentIdToDelete => {
+    const res = await axios.delete(`api/students/delete/${studentIdToDelete}`, {
+      studentId: studentIdToDelete
+    });
+    if(res.data.success) {
+      // const students = this.state.students.filter(student => student.studentId !== studentIdToDelete);
+      // this.setState({ students });
+      this.setState(prevState => ({students: prevState.students.filter(student => student.studentId !== studentIdToDelete)}));
+    } else {
+      alert('Error deleting student.');
+    }
+  };
+
   render() {
     const { students } = this.state;
 
@@ -55,8 +68,13 @@ class StudentManagement extends React.Component {
           <tbody>
             <NewStudent addNewStudent={this.addNewStudent} />
             {students.map(student => (
-              <Student key={`manageStudent${student.studentId}`} {...student} />
-            ))}
+              <Student
+                handleDelete={this.handleDelete}
+                key={`manageStudent${student.studentId}`}
+                {...student}
+              />
+              ))
+            }
           </tbody>
         </table>
         <style jsx>{`
