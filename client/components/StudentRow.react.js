@@ -142,7 +142,7 @@ const StaticStudent = props => (
 StaticStudent.propTypes = {
   firstName: PropTypes.string,
   lastName: PropTypes.string,
-  studentId: PropTypes.number,
+  studentId: PropTypes.string,
   toggleEdit: PropTypes.func.isRequired,
   handleDelete: PropTypes.func,
 };
@@ -241,7 +241,7 @@ EditableStudent.propTypes = {
   onChangeField: PropTypes.func.isRequired,
   firstName: PropTypes.string,
   lastName: PropTypes.string,
-  studentId: PropTypes.number,
+  studentId: PropTypes.string,
 };
 
 EditableStudent.defaultProps = {
