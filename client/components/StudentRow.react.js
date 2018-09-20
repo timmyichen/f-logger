@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 
-class NewStudent extends React.Component {
+class StudentRow extends React.Component {
   static propTypes = {
     student: PropTypes.object,
     onSubmit: PropTypes.func.isRequired,
@@ -44,12 +44,11 @@ class NewStudent extends React.Component {
 
   onSubmit = async () => {
     const { firstName, lastName, studentId } = this.state;
-    const { onSubmit, isNewStudent } = this.props;
+    const { onSubmit, isNewStudent, student } = this.props;
 
     const success = await onSubmit({
-      firstName,
-      lastName,
-      studentId,
+      id: student._id,
+      studentInfo: { firstName, lastName, studentId },
     });
 
     if (success && isNewStudent) {
@@ -61,6 +60,16 @@ class NewStudent extends React.Component {
       this.firstNameInput.focus();
     }
     this.setState({ isEditing: false });
+  };
+
+  onDelete = async () => {
+    const { student, handleDelete } = this.props;
+
+    try {
+      await handleDelete({ id: student._id });
+    } catch (e) {
+      console.log(e.message);
+    }
   };
 
   handleKeyPress = e => {
@@ -77,7 +86,7 @@ class NewStudent extends React.Component {
 
   render() {
     const { firstName, lastName, studentId, isEditing } = this.state;
-    const { isNewStudent, handleDelete } = this.props;
+    const { isNewStudent } = this.props;
 
     if (isEditing || this.props.isNewStudent) {
       return (
@@ -101,13 +110,13 @@ class NewStudent extends React.Component {
         lastName={lastName}
         studentId={studentId}
         toggleEdit={this.toggleEdit}
-        handleDelete={handleDelete}
+        handleDelete={this.onDelete}
       />
     );
   }
 }
 
-export default NewStudent;
+export default StudentRow;
 
 const StaticStudent = props => (
   <tr>
