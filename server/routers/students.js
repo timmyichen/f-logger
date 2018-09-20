@@ -45,7 +45,7 @@ router.postAsync('/api/students/create', async (req, res) => {
 router.postAsync('/api/students/delete/:id', async (req, res) => {
   const [err, student] = await go(
     Student.findOneAndUpdate(
-      { studentId: req.params.id },
+      { _id: req.params.id },
       { $set: { timeDeleted: Date.now() } },
     ),
   );
@@ -65,7 +65,7 @@ router.postAsync('/api/students/update/:id', async (req, res) => {
 
   const [err, student] = await go(
     Student.findOneAndUpdate(
-      { studentId: req.params.id },
+      { _id: req.params.id },
       { $set: { firstName, lastName, studentId } },
     ),
   );
