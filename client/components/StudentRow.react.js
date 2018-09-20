@@ -1,6 +1,20 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 
 class NewStudent extends React.Component {
+  static propTypes = {
+    student: PropTypes.object,
+    onSubmit: PropTypes.func.isRequired,
+    isNewStudent: PropTypes.bool,
+    handleDelete: PropTypes.func,
+  };
+
+  static defaultProps = {
+    student: null,
+    isNewStudent: false,
+    handleDelete: () => {},
+  };
+
   state = {
     firstName: '',
     lastName: '',
@@ -87,7 +101,6 @@ class NewStudent extends React.Component {
         lastName={lastName}
         studentId={studentId}
         toggleEdit={this.toggleEdit}
-        onSubmit={this.onSubmit}
         handleDelete={handleDelete}
       />
     );
@@ -116,6 +129,21 @@ const StaticStudent = props => (
     </td>
   </tr>
 );
+
+StaticStudent.propTypes = {
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
+  studentId: PropTypes.number,
+  toggleEdit: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func,
+};
+
+StaticStudent.defaultProps = {
+  firstName: '',
+  lastName: '',
+  studentId: null,
+  handleDelete: () => {},
+};
 
 const EditableStudent = props => {
   const actions = props.isNewStudent ? (
@@ -194,4 +222,22 @@ const EditableStudent = props => {
       `}</style>
     </tr>
   );
+};
+
+EditableStudent.propTypes = {
+  isNewStudent: PropTypes.bool,
+  onSubmit: PropTypes.func.isRequired,
+  toggleEdit: PropTypes.func.isRequired,
+  handleKeyPress: PropTypes.func.isRequired,
+  onChangeField: PropTypes.func.isRequired,
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
+  studentId: PropTypes.number,
+};
+
+EditableStudent.defaultProps = {
+  isNewStudent: false,
+  firstName: '',
+  lastName: '',
+  studentId: null,
 };
