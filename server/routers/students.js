@@ -5,7 +5,9 @@ const { mongoose } = require('../lib/db');
 
 router.getAsync('/api/students', async (req, res) => {
   //find students without an value for timeDeleted
-  const [err, students] = await go(Student.find({timeDeleted:{$eq:null}}));
+  const [err, students] = await go(
+    Student.find({ timeDeleted: { $eq: null } }),
+  );
 
   if (err) {
     throw new Error(err.message);
@@ -27,7 +29,7 @@ router.postAsync('/api/students/create', async (req, res) => {
     studentId,
     owner: req.user._id,
   });
-  
+
   const [err, student] = await go(studentModel.save());
 
   if (err) {
@@ -40,12 +42,17 @@ router.postAsync('/api/students/create', async (req, res) => {
   });
 });
 
-router.deleteAsync('/api/students/delete/:id', async (req, res) => {
-  const [err, student] = await go(Student.findOneAndUpdate({studentId: req.params.id}, {$set:{timeDeleted: Date.now()}}));
+router.postAsync('/api/students/delete/:id', async (req, res) => {
+  const [err, student] = await go(
+    Student.findOneAndUpdate(
+      { studentId: req.params.id },
+      { $set: { timeDeleted: Date.now() } },
+    ),
+  );
   if (err) return res.status(500).send(err);
   return res.status(200).json({
     message: `${student.firstName} successfully deleted.`,
-    success: true
+    success: true,
   });
 });
 

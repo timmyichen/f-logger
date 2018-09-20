@@ -41,7 +41,7 @@ class StudentManagement extends React.Component {
   };
 
   handleDelete = async studentIdToDelete => {
-    const res = await axios.delete(`api/students/delete/${studentIdToDelete}`, {
+    const res = await axios.post(`api/students/delete/${studentIdToDelete}`, {
       studentId: studentIdToDelete,
     });
     if (res.data.success) {
