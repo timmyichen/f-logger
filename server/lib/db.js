@@ -1,6 +1,9 @@
-const mongoose = require('mongoose'); 
+const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/flogger', { useNewUrlParser: true });
+mongoose.connect(
+  'mongodb://localhost/flogger?replicaSet=rs',
+  { useNewUrlParser: true },
+);
 
 module.exports = {
   mongoose,
