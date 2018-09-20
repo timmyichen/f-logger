@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 import Student from './Student.react';
-import NewStudent from './NewStudent.react';
+import StudentRow from './StudentRow.react';
 
 class StudentManagement extends React.Component {
   state = { students: [] };
@@ -36,14 +36,22 @@ class StudentManagement extends React.Component {
     return res.data.success;
   };
 
+  updateStudent = studentInfo => {
+    console.log('ayyy');
+  };
+
   handleDelete = async studentIdToDelete => {
     const res = await axios.delete(`api/students/delete/${studentIdToDelete}`, {
-      studentId: studentIdToDelete
+      studentId: studentIdToDelete,
     });
-    if(res.data.success) {
+    if (res.data.success) {
       // const students = this.state.students.filter(student => student.studentId !== studentIdToDelete);
       // this.setState({ students });
-      this.setState(prevState => ({students: prevState.students.filter(student => student.studentId !== studentIdToDelete)}));
+      this.setState(prevState => ({
+        students: prevState.students.filter(
+          student => student.studentId !== studentIdToDelete,
+        ),
+      }));
     } else {
       alert('Error deleting student.');
     }
@@ -66,15 +74,15 @@ class StudentManagement extends React.Component {
             </tr>
           </thead>
           <tbody>
-            <NewStudent addNewStudent={this.addNewStudent} />
+            <StudentRow onSubmit={this.addNewStudent} isNewStudent />
             {students.map(student => (
-              <Student
-                handleDelete={this.handleDelete}
+              <StudentRow
                 key={`manageStudent${student.studentId}`}
-                {...student}
+                onSubmit={this.updateStudent}
+                handleDelete={this.handleDelete}
+                student={student}
               />
-              ))
-            }
+            ))}
           </tbody>
         </table>
         <style jsx>{`
