@@ -49,9 +49,33 @@ router.postAsync('/api/students/delete/:id', async (req, res) => {
       { $set: { timeDeleted: Date.now() } },
     ),
   );
-  if (err) return res.status(500).send(err);
-  return res.status(200).json({
+
+  if (err) {
+    throw new Error(err.message);
+  }
+
+  return res.json({
     message: `${student.firstName} successfully deleted.`,
+    success: true,
+  });
+});
+
+router.postAsync('/api/students/update/:id', async (req, res) => {
+  const { firstName, lastName, studentId } = req.body;
+
+  const [err, student] = await go(
+    Student.findOneAndUpdate(
+      { studentId: req.params.id },
+      { $set: { firstName, lastName, studentId } },
+    ),
+  );
+
+  if (err) {
+    throw new Error(err.message);
+  }
+
+  return res.json({
+    data: student,
     success: true,
   });
 });
