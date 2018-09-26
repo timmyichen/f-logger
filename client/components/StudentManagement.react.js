@@ -1,8 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import Student from './Student.react';
-import NewStudent from './NewStudent.react';
+import StudentRow from './StudentRow.react';
 
 class StudentManagement extends React.Component {
   state = { students: [] };
@@ -16,8 +15,8 @@ class StudentManagement extends React.Component {
     this.setState({ students: res.data.data });
   };
 
-  addNewStudent = async newStudentInfo => {
-    const { firstName, lastName, studentId } = newStudentInfo;
+  addNewStudent = async ({ studentInfo }) => {
+    const { firstName, lastName, studentId } = studentInfo;
 
     const res = await axios.post('/api/students/create', {
       firstName,
@@ -36,14 +35,34 @@ class StudentManagement extends React.Component {
     return res.data.success;
   };
 
-  handleDelete = async studentIdToDelete => {
-    const res = await axios.delete(`api/students/delete/${studentIdToDelete}`, {
-      studentId: studentIdToDelete
+  updateStudent = async ({ id, studentInfo }) => {
+    console.log(id);
+    console.log(studentInfo);
+    const res = await axios.post(`/api/students/update/${id}`, studentInfo);
+
+    if (res.data.success) {
+      const students = this.state.students.map(student => {
+        if (student.id === id) {
+          // replace the student's data with the data newly returned from server
+          return res.data.data;
+        } else {
+          return student;
+        }
+      });
+
+      this.setState({ students });
+    }
+  };
+
+  handleDelete = async ({ id }) => {
+    const res = await axios.post(`/api/students/delete/${id}`, {
+      studentId: id,
     });
-    if(res.data.success) {
-      // const students = this.state.students.filter(student => student.studentId !== studentIdToDelete);
-      // this.setState({ students });
-      this.setState(prevState => ({students: prevState.students.filter(student => student.studentId !== studentIdToDelete)}));
+    if (res.data.success) {
+      const students = this.state.students.filter(
+        student => student._id !== id,
+      );
+      this.setState({ students });
     } else {
       alert('Error deleting student.');
     }
@@ -66,15 +85,15 @@ class StudentManagement extends React.Component {
             </tr>
           </thead>
           <tbody>
-            <NewStudent addNewStudent={this.addNewStudent} />
+            <StudentRow onSubmit={this.addNewStudent} isNewStudent />
             {students.map(student => (
-              <Student
-                handleDelete={this.handleDelete}
+              <StudentRow
                 key={`manageStudent${student.studentId}`}
-                {...student}
+                onSubmit={this.updateStudent}
+                handleDelete={this.handleDelete}
+                student={student}
               />
-              ))
-            }
+            ))}
           </tbody>
         </table>
         <style jsx>{`
